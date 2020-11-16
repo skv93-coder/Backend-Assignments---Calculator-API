@@ -132,7 +132,7 @@ app.post("/multiply",(req,res)=>{
         msg="Underflow";
         result=undefined;
     }else{
-        msg="the product of given two numbers";
+        msg="the product of given numbers";
     
      result=parseFloat((num1))*parseFloat((num2));
     }
