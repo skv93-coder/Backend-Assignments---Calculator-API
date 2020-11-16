@@ -114,6 +114,14 @@ app.post("/multiply",(req,res)=>{
     const {num1,num2}=req.body;
     //res.send(`the sum of given two numbers`,`sum:${num1+num2}`);
     //const re=req.body.params.num1;
+    if(isNaN(parseFloat(num1)) || isNaN(parseFloat(num1))){
+        res.send({
+            status: "failure",
+            message: "Invalid data types",
+            result: undefined
+        });
+        return ;
+    }
     let status;
     if(typeof num1==="string"||typeof num2==="string"||parseFloat(num1)<-1000000||parseFloat( num2)<-1000000||parseFloat(num1)>1000000||parseFloat(num2)>1000000||parseFloat((num1))*parseFloat((num2))>1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
         status="error";
