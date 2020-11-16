@@ -121,16 +121,21 @@ app.post("/multiply",(req,res)=>{
         status="success";
     }
     let msg;
+    let result;
     if(typeof num1==="string"||typeof num2==="string"){
         msg="Invalid data types";
+          result=undefined;
     }else if(num1>1000000||num2>1000000||parseFloat((num1))*parseFloat((num2))> 1000000){
         msg="Overflow";
+          result=undefined;
     }else if(num1<-1000000||num2<-1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
         msg="Underflow";
+        result=undefined;
     }else{
         msg="the product of given two numbers";
+    
+     result=parseFloat((num1))*parseFloat((num2));
     }
-    const result=parseFloat((num1))*parseFloat((num2));
     
     
     const obj={
