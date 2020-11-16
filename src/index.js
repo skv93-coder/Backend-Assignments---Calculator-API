@@ -115,7 +115,7 @@ app.post("/multiply",(req,res)=>{
     //res.send(`the sum of given two numbers`,`sum:${num1+num2}`);
     //const re=req.body.params.num1;
     let status;
-    if(typeof num1==="string"||typeof num2==="string"||num1<-1000000||num2<-1000000||num1>1000000||num2>1000000||parseFloat((num1))*parseFloat((num2))>1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
+    if(typeof num1==="string"||typeof num2==="string"||parseFloat(num1)<-1000000||parseFloat( num2)<-1000000||parseFloat(num1)>1000000||parseFloat(num2)>1000000||parseFloat((num1))*parseFloat((num2))>1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
         status="error";
     }else{
         status="success";
@@ -125,10 +125,10 @@ app.post("/multiply",(req,res)=>{
     if(typeof num1==="string"||typeof num2==="string"){
         msg="Invalid data types";
           result=undefined;
-    }else if(num1>1000000||num2>1000000||parseFloat((num1))*parseFloat((num2))> 1000000){
+    }else if(parseFloat(num1)>1000000||parseFloat(num2)>1000000||parseFloat((num1))*parseFloat((num2))> 1000000){
         msg="Overflow";
           result=undefined;
-    }else if(num1<-1000000||num2<-1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
+    }else if(parseFloat(num1)<-1000000||parseFloat(num2)<-1000000||parseFloat((num1))*parseFloat((num2))<-1000000){
         msg="Underflow";
         result=undefined;
     }else{
