@@ -51,7 +51,7 @@ app.post("/sub",(req,res)=>{
     //res.send(`the sum of given two numbers`,`sum:${num1+num2}`);
     //const re=req.body.params.num1;
     let status;
-    if(typeof num1==="string"||typeof num2==="string"||num1<-1000000||num2<-1000000||num1>1000000||num2>1000000||num1-num2>1000000){
+    if(typeof num1==="string"||typeof num2==="string"||num1<-1000000||num2<-1000000||num1>1000000||num2>1000000||num1-num2>1000000|| num1-num2<-1000000){
         status="error";
     }else{
         status="success";
@@ -59,7 +59,7 @@ app.post("/sub",(req,res)=>{
     let msg;
     if(typeof num1==="string"||typeof num2==="string"){
         msg="Invalid data types";
-    }else if(num1>1000000||num2>1000000||num1-num2>1000000){
+    }else if(num1>1000000||num2>1000000){
         msg="Overflow";
     }else if(num1<-1000000||num2<-1000000||num1-num2<-1000000){
         msg="Underflow";
@@ -72,7 +72,7 @@ app.post("/sub",(req,res)=>{
     const obj={
 status: status,
 message:msg,
-sum: result
+difference: result
 };
     res.send(obj);
 })
@@ -105,7 +105,7 @@ app.post("/divide",(req,res)=>{
     const obj={
 status: status,
 message:msg,
-sum: result
+result: result
 };
   
     res.send(obj);
@@ -136,7 +136,7 @@ app.post("/multiply",(req,res)=>{
     const obj={
 status: status,
 message:msg,
-sum: result
+result: result
 };
     res.send(obj);
 })
