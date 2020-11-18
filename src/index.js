@@ -53,42 +53,65 @@ app.post("/add", (req, res) => {
   res.send(obj);
 });
 app.post("/sub", (req, res) => {
-  const { num1, num2 } = req.body;
-  //res.send(`the sum of given two numbers`,`sum:${num1+num2}`);
-  //const re=req.body.params.num1;
-  let status;
-  if (
-    typeof num1 === "string" ||
-    typeof num2 === "string" ||
-    num1 < -1000000 ||
-    num2 < -1000000 ||
-    num1 > 1000000 ||
-    num2 > 1000000 ||
-    num1 - num2 > 1000000 ||
-    num1 - num2 < -1000000
-  ) {
-    status = "error";
-  } else {
-    status = "success";
-  }
-  let msg;
-  if (typeof num1 === "string" || typeof num2 === "string") {
-    msg = "Invalid data types";
-  } else if (num1 > 1000000 || num2 > 1000000) {
-    msg = "Overflow";
-  } else if (num1 < -1000000 || num2 < -1000000 || num1 - num2 < -1000000) {
-    msg = "Underflow";
-  } else {
-    msg = "the difference of given two numbers";
-  }
-  const result = num1 - num2;
+  //   const { num1, num2 } = req.body;
+  //   //res.send(`the sum of given two numbers`,`sum:${num1+num2}`);
+  //   //const re=req.body.params.num1;
+  //   let status;
+  //   if (
+  //     typeof num1 === "string" ||
+  //     typeof num2 === "string" ||
+  //     num1 < -1000000 ||
+  //     num2 < -1000000 ||
+  //     num1 > 1000000 ||
+  //     num2 > 1000000 ||
+  //     num1 - num2 > 1000000 ||
+  //     num1 - num2 < -1000000
+  //   ) {
+  //     status = "error";
+  //   } else {
+  //     status = "success";
+  //   }
+  //   let msg;
+  //   if (typeof num1 === "string" || typeof num2 === "string") {
+  //     msg = "Invalid data types";
+  //   } else if (num1 > 1000000 || num2 > 1000000) {
+  //     msg = "Overflow";
+  //   } else if (num1 < -1000000 || num2 < -1000000 || num1 - num2 < -1000000) {
+  //     msg = "Underflow";
+  //   } else {
+  //     msg = "the difference of given two numbers";
+  //   }
+  //   const result = num1 - num2;
 
-  const obj = {
-    status: status,
-    message: msg,
-    difference: result,
+  //   const obj = {
+  //     status: status,
+  //     message: msg,
+  //     difference: result,
+  //   };
+  //   res.send(obj);
+  let num1 = req.body.num1;
+  let num2 = req.body.num2;
+
+  if (Number(num1) !== parseFloat(num1) || Number(num2) !== parseFloat(num2)) {
+    //res.status(404).send("invalid data types");
+    res.send({ status: "error", message: "Invalid data types" });
+    return;
+  }
+
+  if (parseFloat(num1) > 1000000 || parseFloat(num2) > 1000000) {
+    //res.status(404).send("Overflow");
+    res.send({ status: "failure", message: "Overflow" });
+    return;
+  }
+
+  const result = parseFloat(num1) * parseFloat(num2);
+
+  const answer = {
+    status: "success",
+    message: "The product of given numbers",
+    result: result,
   };
-  res.send(obj);
+  res.send(answer);
 });
 app.post("/divide", (req, res) => {
   const { num1, num2 } = req.body;
