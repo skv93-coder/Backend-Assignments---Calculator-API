@@ -195,7 +195,11 @@ app.post("/multiply", (req, res) => {
     return;
   }
 
-  if (parseFloat(num1) > 1000000 || parseFloat(num2) > 1000000) {
+  if (
+    parseFloat(num1) > 1000000 ||
+    parseFloat(num2) > 1000000 ||
+    parseFloat(num1) * parseFloat(num2) > 1000000
+  ) {
     //res.status(404).send("Overflow");
     res.send({ status: "failure", message: "Overflow" });
     return;
